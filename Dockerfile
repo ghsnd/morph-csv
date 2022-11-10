@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 
 RUN apt-get update && apt-get install -y nodejs npm wget unzip zip python3 bc vim build-essential python3-pip openjdk-8-jdk
 
@@ -19,7 +19,7 @@ ADD requirements.txt /morphcsv/
 ADD morphcsv.py /morphcsv/
 ADD debug.py /morphcsv/
 
-RUN pip3 install -r /morphcsv/requirements.txt
+RUN python3 -m pip install --upgrade pip && pip3 install -r /morphcsv/requirements.txt
 #RUN bash /morphcsv/evaluation/preparation.sh
 EXPOSE 5000
 CMD ["python3", "/server/app.py"]
